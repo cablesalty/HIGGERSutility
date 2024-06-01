@@ -11,6 +11,5 @@ Base features:
 - "status" (Displays status and statistics of current attack)
 - "clear" & "cls" (clears prompt)
 - Time measurements (might be invalid)
-- Sync running threads and target threads WHILE running
 
 ----------------------------------------------------

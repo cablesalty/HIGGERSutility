@@ -183,8 +183,8 @@ while True:
             settings.targetthreads = int(target)
             print("Set Thread Target to " + target)
 
-        if settings.running and not target == "":
-            print("A job is running to update running threads (match target threads) (wait a long time...)")
+        # if settings.running and not target == "":
+        #     print("A job is running to update running threads (match target threads) (wait a long time...)")
 
     elif cmd.startswith("target"):
         try:
