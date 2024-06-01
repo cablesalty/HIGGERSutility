@@ -53,7 +53,6 @@ class settings:
     useragent = ""
 
     targetthreads = 1
-    openthreads = 0
     threads = []
 
     reqmade = 0
@@ -265,13 +264,19 @@ while True:
             print("=! STATUS REPORT != Stopping attack...")
             print("Setting stop flag...")
             stop_event.set()
-            print("Joining threads... (wait a long time...)")
+            print("Waiting for threads... (wait a long time...)")
             for thread in settings.threads:
                 thread.join()
             print("Clearing thread list...")
             settings.threads = []
-            print("Stopped attack!")
             settings.running = False
+            print("Stopped attack!")
+            print("Statistics:")
+            print("Requests made in attack lifetime: " + str(settings.reqmade))
+            print("Target threads: " + str(settings.targetthreads))
+            print("Target: " + settings.target)
+            print("Cleaning up...")
+            settings.reqmade = 0
         else:
             successful = False
             print("!!! ERROR !!! Failed to stop attack (not currently attacking)")
