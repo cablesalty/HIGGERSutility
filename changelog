@@ -3,7 +3,7 @@ Version 1.0 'Cold Mountains'
 This is the first release version of HIGGERSutil (aka HiggUtil)
 Base features:
 - "changelog" command
-- "uarand" (user agent randomizer) command (randomchar/randchar, numbers/nums, words, offensive) (overrides "staticua")
+- "uarand" (user agent randomizer) command (numbers/nums, words, offensive) (overrides "staticua")
 - "useragent" (set user agent to static string) (overrides "uaran")
 - "threads" command ('threads <threads to launch>')
 - "target" command (<target ip>)
