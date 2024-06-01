@@ -207,7 +207,8 @@ while True:
 
     elif cmd == "start":
         check_success = True
-        print("=! STATUS REPORT != Attempting to launch attack")
+        print("=! STATUS REPORT != Attempting to launch attack...")
+        print()
         print("Applied settings:")
         if settings.userset_uarand and settings.userset_useragent:
             check_success = False
@@ -238,6 +239,8 @@ while True:
             check_success = False
             print("!!! ERROR !!! Attack already running.")
 
+        print()
+
         if check_success == False:
             successful = False
             print("!!! ERROR !!! Failed to launch attack (settings check failed)")
@@ -262,6 +265,7 @@ while True:
     elif cmd == "stop":
         if settings.running:
             print("=! STATUS REPORT != Stopping attack...")
+            print()
             print("Setting stop flag...")
             stop_event.set()
             print("Waiting for threads... (wait a long time...)")
@@ -271,10 +275,12 @@ while True:
             settings.threads = []
             settings.running = False
             print("Stopped attack!")
+            print()
             print("Statistics:")
             print("Requests made in attack lifetime: " + str(settings.reqmade))
             print("Target threads: " + str(settings.targetthreads))
             print("Target: " + settings.target)
+            print()
             print("Cleaning up...")
             settings.reqmade = 0
         else:
@@ -287,6 +293,7 @@ while True:
 
     end = time.monotonic_ns()
     if not cmd == "":
+        print()
         if successful:
             print("Operation completed successfully, took " + str(end - start) + " nanoseconds (might be invalid)")
         else:
