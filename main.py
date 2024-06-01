@@ -99,7 +99,7 @@ def reqattack(target, stop_event):
             settings.reqmade += 1
         except Exception as e:
             print("!!! THREAD ERROR !!! " + str(e))
-            if halt_on_errors:
+            if settings.halt_on_errors:
                 print("HALTING...")
                 break
             else:
