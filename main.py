@@ -284,9 +284,25 @@ while True:
             print()
             print("Cleaning up...")
             settings.reqmade = 0
+
         else:
             successful = False
             print("!!! ERROR !!! Failed to stop attack (not currently attacking)")
+
+    elif cmd == "guide" or cmd == "help":
+        print("HIGGERSguide - Help Utility")
+        print()
+        print("Settings:")
+        print("useragent <string> - Set User Agent to a static string. (overwrites 'uarand')")
+        print("uarand <mode> - Set User Agent Randomizer mode. (overwrites 'useragent') Valid options: words, nums/numbers")
+        print("threads <target-num> - Set the number of threads to target on attack start")
+        print("target <protocol://ip-or-domain> - Set target to attack")
+        print("(ProTip: Executing any of there commands without arguments displays the current value)")
+        print()
+        print("Others:")
+        print("status - Displays attack status and statistics")
+        print("start - Starts the attack")
+        print("stop - Stops the attack")
 
     else:
         successful = False
