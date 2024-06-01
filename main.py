@@ -188,7 +188,19 @@ while True:
         if settings.running and not target == "":
             print("A job is running to update running threads (match target threads) (wait a long time...)")
 
-    if cmd == "start":
+    elif cmd.startswith("target"):
+        try:
+            target = cmd.split(" ")[1]
+        except IndexError:
+            target = ""
+
+        if target == "":
+            print("Value: " + str(settings.targetthreads))
+        else:
+            settings.target = target
+            print("Set Target to " + target)
+
+    elif cmd == "start":
         check_success = True
         print("=! STATUS REPORT != Attempting to launch attack")
         print("Applied settings:")
@@ -239,6 +251,9 @@ while True:
             for i in range(len(settings.threads)):
                 print("Starting thread " + str(i) + "...")
                 settings.threads[i].start()
+
+            settings.running = True            
+            print("!!!! Started attack !!!!")
     if cmd == "stop":
         if settings.running:
             print("=! STATUS REPORT != Stopping attack... (wait a long time...)")
