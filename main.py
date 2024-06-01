@@ -173,7 +173,7 @@ while True:
             settings.userset_uarand = False
             print("!! WARNING !! User Agent Randomizer OVERWRITTEN by Static User Agent String")
 
-    if cmd.startswith("threads"):
+    elif cmd.startswith("threads"):
         try:
             target = cmd.split(" ")[1]
         except IndexError:
@@ -254,7 +254,7 @@ while True:
 
             settings.running = True            
             print("!!!! Started attack !!!!")
-    if cmd == "stop":
+    elif cmd == "stop":
         if settings.running:
             print("=! STATUS REPORT != Stopping attack... (wait a long time...)")
             print("Setting stop flag...")
