@@ -71,7 +71,8 @@ _   _ ___ ____  ____ _____ ____  ____        _   _ _ _ _
 print("Request spammer with UA changer")
 print("Made by: cablesalty // Not for illegal use!")
 print()
-print("To view changelog, type 'changelog latest' or 'changelog all'")
+print("ProTips:")
+print("To view changelog, type 'changelog'")
 print("To see what you can do, type 'guide' or 'help'")
 print()
 
