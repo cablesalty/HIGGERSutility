@@ -8,6 +8,8 @@ Base features:
 - "threads" command ('threads <threads to launch>')
 - "target" command (<target ip>)
 - "start" & "stop" commands (does what it says, starts or stops the attack with the settings applied)
+- "status" (Displays status and statistics of current attack)
+- "clear" & "cls" (clears prompt)
 - Time measurements (might be invalid)
 - Sync running threads and target threads WHILE running
 

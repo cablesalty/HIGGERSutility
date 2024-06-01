@@ -5,6 +5,7 @@ import time
 import requests
 import threading
 import random
+import platform
 
 print("HIGGERSutility - HiggUtil - Version 1.0 'Cold Mountains' - cablesalty")
 
@@ -303,6 +304,12 @@ while True:
         print("status - Displays attack status and statistics")
         print("start - Starts the attack")
         print("stop - Stops the attack")
+
+    elif cmd == "clear" or cmd == "cls":
+        if "windows" in platform.platform().lower():
+            os.system("cls")
+        else:
+            os.system("clear")
 
     else:
         successful = False
