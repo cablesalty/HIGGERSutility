@@ -93,7 +93,7 @@ def reqattack(target, stop_event):
             header = {
                 "user-agent": "Higgers " + random.choice(settings.wordlist)
             }
-        requests.get(target, header=header)
+        requests.get(target, headers=header)
         settings.reqmade += 1
 
 while True:
