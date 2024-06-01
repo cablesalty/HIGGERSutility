@@ -202,6 +202,8 @@ while True:
             print("Attack *RUNNING*")
             print("Open threads: " + str(len(settings.threads)) + " (target " + str(settings.targetthreads) + ")")
             print("Requests made so far: " + str(settings.reqmade))
+        else:
+            print("Attack *STOPPED*")
 
     elif cmd == "start":
         check_success = True
