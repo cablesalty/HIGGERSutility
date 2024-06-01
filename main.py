@@ -198,6 +198,7 @@ while True:
             print("Set Target to " + target)
     
     elif cmd == "status":
+        print("Attack Status and Statistics:")
         if settings.running:
             print("Attack *RUNNING*")
             print("Open threads: " + str(len(settings.threads)) + " (target " + str(settings.targetthreads) + ")")
